@@ -1,0 +1,16 @@
+services:
+  builder:
+    image: $registry/$tenant_name/datastone-serverless-comfy:builder
+    build:
+      context: .
+      target: builder
+      args:
+      - BASE_URL=$registry
+  datastone-serverless-comfy:
+    image: $registry/$tenant_name/datastone-serverless-comfy:comfyui
+    build:
+      context: .
+      target: comfyui
+      args:
+      - BASE_URL=$registry
+
