@@ -8,3 +8,5 @@ minio == 7.2.7
 pillow == 10.4.0
 spirit-gpu >= 0.0.1
 yarl == 1.17.0
+boto3 == 1.35.99
+tqdm-loggable >= 0.1.4

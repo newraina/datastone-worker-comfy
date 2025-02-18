@@ -9,6 +9,7 @@ from PIL import Image
 from spirit_gpu import start, Env
 
 from comfyui_client import ComfyUIClient
+import rp_upload
 
 
 def config_logging():
@@ -75,7 +76,7 @@ def to_base64(images: Image.Image):
         return base64.b64encode(contents).decode("utf-8")
 
 
-def process_images(data_list: List[str]):
+def process_images(prompt_id: str, data_list: List[str]):
     base64_images = []
 
     for item in data_list:
@@ -100,8 +101,14 @@ def process_images(data_list: List[str]):
                 try:
                     with Image.open(image_path) as img:
                         logging.info(f"image open : {img}")
-                        base64_str = to_base64(img)
-                        base64_images.append(base64_str)
+
+                        if os.environ.get("BUCKET_ENDPOINT_URL", False):
+                            base64_str = rp_upload.upload_image(
+                                job_id=prompt_id, image_location=image_path
+                            )
+                        else:
+                            base64_str = to_base64(img)
+                            base64_images.append(base64_str)
                 except Exception as e:
                     print(f"Error processing image {image_path}: {e}")
 
@@ -153,7 +160,7 @@ def start_handler():
             images = client.get_images(client_id=client_id, prompt_id=prompt_id)
             logging.info(f"Generated images for prompt ID {prompt_id}")
             logging.info(f"Generated images data {images}")
-            images_base64 = process_images(images)
+            images_base64 = process_images(prompt_id=prompt_id, data_list=images)
 
             logging.info(f"Generated images base64 data {images_base64}")
             # 返回生成结果
