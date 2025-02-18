@@ -52,6 +52,12 @@ RUN wget -O /workspace/ComfyUI/models/clip/t5xxl_fp8_e4m3fn.safetensors -c 'http
 
 RUN wget -O /workspace/ComfyUI/models/vae/ae.safetensors -c 'https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors?download=true'
 
+RUN wget -O /workspace/ComfyUI/models/checkpoints/sd_xl_base_1.0.safetensors -c 'https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors?download=true'
+
+RUN wget -O /workspace/ComfyUI/models/vae/sdxl_vae.safetensors -c 'https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors?download=true'
+
+RUN wget -O /workspace/ComfyUI/models/vae/sdxl-vae-fp16-fix.safetensors -c 'https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors?download=true'
+
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y --no-install-recommends openssh-server && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace/ComfyUI

@@ -1,14 +1,14 @@
-import logging
-import uuid
-import websocket
-import requests
-import json
-import urllib.request
-import urllib.parse
 import base64
+import json
+import logging
+import urllib.parse
+import urllib.request
+import uuid
 from io import BytesIO
-from requests.adapters import HTTPAdapter
 
+import requests
+import websocket
+from requests.adapters import HTTPAdapter
 # YOU MUST IGNORE THE rETRY MODULE IMPORT ERROR
 from requests.packages.urllib3.util.retry import Retry  # type: ignore
 

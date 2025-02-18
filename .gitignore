@@ -5,6 +5,7 @@ __pycache__/
 *$py.class
 
 .env.*
+http-client.private.env.json
 
 # C extensions
 *.so

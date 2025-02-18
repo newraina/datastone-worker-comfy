@@ -1,6 +1,7 @@
-import time
-import logging
 import functools
+import logging
+import time
+
 
 def retry(max_retries, wait_time):
     def decorator(func):

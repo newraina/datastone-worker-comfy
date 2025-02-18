@@ -1,12 +1,14 @@
-import os
-import logging
-from typing import Any, Dict
-import uuid
-from spirit_gpu import start, Env
-from comfyui_client import ComfyUIClient
 import json
-from PIL import Image
+import logging
+import os
+import uuid
+from typing import Any, Dict
 from typing import List
+
+from PIL import Image
+from spirit_gpu import start, Env
+
+from comfyui_client import ComfyUIClient
 
 
 def config_logging():
